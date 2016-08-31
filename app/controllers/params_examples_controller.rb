@@ -40,6 +40,35 @@ class ParamsExamplesController < ApplicationController
   def url
     @awkward = params[:turkey]
   end
+
+  def guess_url
+    answer = params[:answer]
+    @answer = answer
+    if answer
+      answer = answer.to_i
+      correct_answer = 32
+
+      if answer == correct_answer
+        @message = "You Did It!!!!"
+      elsif answer < 1 || answer > 100
+        @message = "You're out of bounds, Guy."
+      elsif answer < correct_answer
+        @message = "Guess higher, buddy."
+      elsif answer > correct_answer
+        @message = "Guess lower, friend"
+      end
+    else
+      @message = "You obviously need to put something in the URL."
+    end
+  end
+
+  def get_form
+    
+  end
+
+  def send_form
+    @message = params[:message]
+  end
 end
 
 
